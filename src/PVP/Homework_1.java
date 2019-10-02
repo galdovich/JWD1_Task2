@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Homework_1 {
     public static void main (String [] args){
 
-        Task13();
+        Task3();
     }
     public static void Task1 (){
         Scanner scn = new Scanner(System.in);
@@ -28,6 +28,22 @@ public class Homework_1 {
         }
     }
     public static void Task3 (){
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
+        int count = 0;
+        int i = 0;
+        int originalNum = num;
+
+        while(num!=0){
+            count = num % 10;
+            i = i*10 + count;
+            num = num / 10;
+        }
+
+        if(originalNum == i)
+            System.out.println("Ваше число палиндром");
+        else
+            System.out.println("Ваше число не палиндром");
     }
     public static void Task4 (){
         System.out.println("Все четные значения в массиве от 1 до 100: ");
