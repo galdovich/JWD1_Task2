@@ -2,7 +2,7 @@ package PVP.Homework_3;
 
 import java.util.Objects;
 
-public class Ships{
+public class Ships implements Comparable <Ships>{
 
     private String application; // military or civil
     private String name;
@@ -54,6 +54,14 @@ public class Ships{
     }
     public void setMaxSpeed(int maxSpeed) {
         this.maxSpeed = maxSpeed;
+    }
+
+    public int compareTo(Ships other) {
+        if(this.getMaxSpeed() > other.getMaxSpeed())
+            return 1;
+        else if (this.getMaxSpeed() == other.getMaxSpeed())
+            return 0 ;
+        return -1 ;
     }
 
     // переопределение метода toString
