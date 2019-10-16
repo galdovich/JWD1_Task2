@@ -78,7 +78,7 @@ public class Homework_4<count> {
     }
 
     public static void task5() {
-        
+
     }
 
     public static void task6() {
