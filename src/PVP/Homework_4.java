@@ -4,15 +4,15 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class Homework_4<count> {
+public class Homework_4<count, newArray> {
     public static void main(String[] args) {
-        task5();
+        task8();
     }
 
     public static void task1() {
-        String input = "during the ceremony, also recalled the words that the beloved journalist said";
+        String ourWords = "during the ceremony, also recalled the words that the beloved journalist said";
         String output = "";
-        String[] array = input.split(" ");
+        String[] array = ourWords.split(" ");
         for (String word : array) {
             String first = word.substring(0, 1).toUpperCase();
             String all = word.substring(1);
@@ -96,7 +96,6 @@ public class Homework_4<count> {
         }
         }
 
-
     public static void task6() {
         String text = ("Ах как хочется жить просто жить хорошо");
         String[] words = text.split(" ");
@@ -148,6 +147,49 @@ public class Homework_4<count> {
 
     public static void task8 () {
 
+        int count = 0;
+        int length = 0;
+
+        String text = "Жил-был на свете дурак.\n" +
+                "Долгое время он жил припеваючи; но понемногу стали доходить до него слухи, что он всюду слывет за безмозглого пошлеца.\n" +
+                "Смутился дурак и начал печалиться о том, как бы прекратить те неприятные слухи?\n" +
+                "Внезапная мысль озарила наконец его темный умишко... И он, нимало не медля, привел ее в исполнение";
+
+        // input length
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите длину слов, которые необходимо найти в вопросительном предложении: ");
+        boolean flag = true;
+        while (flag){
+            System.out.println("Введите число: ");
+            if (scanner.hasNextInt()){
+                length = scanner.nextInt();
+                flag = false;
+            }
+            else {
+                System.out.println("Ошибка: введено отличное от целочисленного значение!");
+                scanner.next();
+            }
+        }
+
+        // my line counter
+        String[] newArray = text.split("\n");
+        for (String bb: newArray){
+            count++;
+        }
+
+        // create array of words and search for a word by comparing with the required length
+        for (int i = 0; i < count; i++){
+            if (newArray[i].contains("?")){
+                String [] arrayWhitQuestion = newArray[i].split("\\?| |,");
+                for (int j = 0; j < arrayWhitQuestion.length; j++){
+                    if (arrayWhitQuestion[j].length() == length){
+                        System.out.println(arrayWhitQuestion[j]);
+                    }
+                }
+            }
         }
     }
+}
+
+
 
