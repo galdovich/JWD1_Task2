@@ -79,7 +79,23 @@ public class Homework_4<count> {
 
     public static void task5() {
 
-    }
+        String ourwords = "Тут я немного перестарался (психанул) и создал коллекцию";
+        String[] array = ourwords.split(" ");
+        ArrayList <String> list = new ArrayList<>();
+        for (int i = 0; i < array.length; i++){
+            if (array[i].contains("(")){
+                array[i] = null;
+                continue;
+            }
+            else {
+                list.add(array[i]);
+            }
+        }
+        for (String finalWords: list){
+            System.out.print(finalWords + " ");
+        }
+        }
+
 
     public static void task6() {
         String text = ("Ах как хочется жить просто жить хорошо");
