@@ -166,7 +166,7 @@ public class Homework_4<count, newArray> {
                 flag = false;
             }
             else {
-                System.out.println("Ошибка: введено отличное от целочисленного значение!");
+                System.out.println("Ошибка: введено число отличное от целочисленного значение!");
                 scanner.next();
             }
         }
