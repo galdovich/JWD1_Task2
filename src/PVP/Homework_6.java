@@ -2,7 +2,6 @@ package PVP;
 
 import java.util.*;
 import java.io.*;
-import java.util.Random;
 
 public class Homework_6 {
     public static void main(String[] args) {
