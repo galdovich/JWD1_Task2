@@ -1,10 +1,9 @@
 package PVP;
 
-import java.io.*;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Homework_4<count, newArray> {
+public class Homework_4 {
     public static void main(String[] args) {
         task8();
     }
@@ -81,40 +80,39 @@ public class Homework_4<count, newArray> {
 
         String ourwords = "Тут я немного перестарался (психанул) и создал коллекцию";
         String[] array = ourwords.split(" ");
-        ArrayList <String> list = new ArrayList<>();
-        for (int i = 0; i < array.length; i++){
-            if (array[i].contains("(")){
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].contains("(")) {
                 array[i] = null;
                 continue;
-            }
-            else {
+            } else {
                 list.add(array[i]);
             }
         }
-        for (String finalWords: list){
+        for (String finalWords : list) {
             System.out.print(finalWords + " ");
         }
-        }
+    }
 
     public static void task6() {
         String text = ("Ах как хочется жить просто жить хорошо");
         String[] words = text.split(" ");
         int count1 = 0;
         int count2 = 0;
-        for (String a: words){
+        for (String a : words) {
             count1++;
         }
-        for (int i = 0; i < count1; i++){
+        for (int i = 0; i < count1; i++) {
             for (int j = 0; j < count1; j++)
-                if (words[i].equals(words[j])){
-                count2 ++;
+                if (words[i].equals(words[j])) {
+                    count2++;
                 }
-            System.out.println("Слово " + words [i] + " встречается " + count2 + " раз(а)");
+            System.out.println("Слово " + words[i] + " встречается " + count2 + " раз(а)");
             count2 = 0;
         }
     }
 
-    public static void task7 () {
+    public static void task7() {
         int count = 0;
         Character[] vowels = new Character[]{'а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я'};
         Character[] consonants = new Character[]{'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ'};
@@ -135,7 +133,7 @@ public class Homework_4<count, newArray> {
             count = 0;
 
             for (Character character : s.toCharArray()) {
-                for (Character lol: consonants) {
+                for (Character lol : consonants) {
                     if (character.equals(lol)) {
                         count++;
                     }
@@ -145,7 +143,7 @@ public class Homework_4<count, newArray> {
         }
     }
 
-    public static void task8 () {
+    public static void task8() {
 
         int count = 0;
         int length = 0;
@@ -159,13 +157,12 @@ public class Homework_4<count, newArray> {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите длину слов, которые необходимо найти в вопросительном предложении: ");
         boolean flag = true;
-        while (flag){
+        while (flag) {
             System.out.println("Введите число: ");
-            if (scanner.hasNextInt()){
+            if (scanner.hasNextInt()) {
                 length = scanner.nextInt();
                 flag = false;
-            }
-            else {
+            } else {
                 System.out.println("Ошибка: введено число отличное от целочисленного значение!");
                 scanner.next();
             }
@@ -173,16 +170,16 @@ public class Homework_4<count, newArray> {
 
         // my line counter
         String[] newArray = text.split("\n");
-        for (String bb: newArray){
+        for (String bb : newArray) {
             count++;
         }
 
         // create array of words and search for a word by comparing with the required length
-        for (int i = 0; i < count; i++){
-            if (newArray[i].contains("?")){
-                String [] arrayWhitQuestion = newArray[i].split("\\?| |,");
-                for (int j = 0; j < arrayWhitQuestion.length; j++){
-                    if (arrayWhitQuestion[j].length() == length){
+        for (int i = 0; i < count; i++) {
+            if (newArray[i].contains("?")) {
+                String[] arrayWhitQuestion = newArray[i].split("\\?| |,");
+                for (int j = 0; j < arrayWhitQuestion.length; j++) {
+                    if (arrayWhitQuestion[j].length() == length) {
                         System.out.println(arrayWhitQuestion[j]);
                     }
                 }
