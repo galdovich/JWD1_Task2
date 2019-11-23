@@ -1,4 +1,4 @@
-package PVP.Semaphore;
+package pvp.Semaphore;
 
 public enum Names {
     Liam, Emma, Noah, Olivia, Mason, Ava, Ethan, Sophia, Logan, Isabella, Lucas, Mia, Jackson,

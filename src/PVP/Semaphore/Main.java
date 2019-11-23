@@ -1,4 +1,4 @@
-package PVP.Semaphore;
+package pvp.Semaphore;
 
 import CallCenter.Name;
 import java.util.Random;
