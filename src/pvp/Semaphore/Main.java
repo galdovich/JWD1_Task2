@@ -1,6 +1,5 @@
 package pvp.Semaphore;
 
-
 import CallCenter.Name;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
@@ -23,7 +22,6 @@ public class Main{
     }
 }
 
-
 class Client extends Thread {
     Semaphore semaphore;
     int id;
@@ -34,7 +32,6 @@ class Client extends Thread {
         this.id = id;
     }
 
-
     public void run (){
         try {
             System.out.println(Thread.currentThread().getName() + " звонит в колл-центр....");
@@ -43,7 +40,6 @@ class Client extends Thread {
             }
             join(10000);
         }catch (InterruptedException e){e.printStackTrace();}
-
 
 
         try{
