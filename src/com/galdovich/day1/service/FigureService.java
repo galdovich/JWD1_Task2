@@ -8,7 +8,7 @@ public class FigureService {
 
     /** Calculates the area of a square inscribed in a circle */
     public double calcInnerSquareArea(double outerSquareArea) throws NumberException {
-        if (!NumberValidator.isPositive(outerSquareArea) || NumberValidator.isZero(outerSquareArea)) {
+        if (!NumberValidator.isPositive(outerSquareArea)) {
             throw new NumberException("Incorrect value");
         }
         double squareSide = countSquareSide(outerSquareArea);
@@ -16,13 +16,13 @@ public class FigureService {
     }
 
     /** The method returns the value of the side of the square */
-    public static double countSquareSide (double squareArea){
+    private double countSquareSide (double squareArea){
         return Math.sqrt(squareArea);
     }
 
     /** The method returns the square area calculated using the diagonal
      * @param diagonal diagonal of a square */
-    public static double countSquareArea (double diagonal){
+    private double countSquareArea (double diagonal){
         return Math.pow(diagonal,2)/2;
     }
 

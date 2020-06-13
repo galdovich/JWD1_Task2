@@ -1,11 +1,12 @@
 package com.galdovich.day1.console;
 
 import com.galdovich.day1.entity.Circle;
+import com.galdovich.day1.entity.CustomTime;
 import com.galdovich.day1.entity.Point;
 
-import java.sql.Date;
-
 public class PrintResult {
+    private static final String CLOSER = " closer to origin than ";
+    private static final String POINTS_EQUALS = " equals ";
 
     public void printParametersOfSquare (double area) {
         System.out.printf("The area of the inner square: %.1f%n", area);
@@ -20,12 +21,26 @@ public class PrintResult {
         System.out.printf("Answer is %.3f %n", num);
     }
 
-    public void Number (int[] array){
-        System.out.println("Hours: " + array[0] + "\n" + "Minutes: " + array[1] + "\n" + "Seconds: " + array[2]);
+    public void outToConsole (CustomTime customTime){
+        System.out.println(customTime.toString());
     }
 
-    public void printClosestPoint (Point point){
-        System.out.println(point.toString());
+    public void printClosestPoint(Point point1, Point point2, int flag) {
+        String result;
+        switch (flag) {
+            case 0:
+                result = point1 + POINTS_EQUALS + point2;
+                break;
+            case 1:
+                result = point1 + CLOSER + point2;
+                break;
+            case 2:
+                result = point2 + CLOSER + point1;
+                break;
+            default:
+                result = "";
+        }
+        System.out.println(result);
     }
 
     public void printCircleArea (Circle circle){

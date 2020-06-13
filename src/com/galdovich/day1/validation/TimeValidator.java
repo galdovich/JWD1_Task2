@@ -6,7 +6,7 @@ public class TimeValidator {
     private static final int MIN_VALUE = 1582;
 
     public static boolean checkMonth (int month){
-        return month <= MAX_MONTH_VALUE && month >= MIN_VALUE;
+        return month <= MAX_MONTH_VALUE && month > 0;
     }
 
     public static boolean checkYear (int year){

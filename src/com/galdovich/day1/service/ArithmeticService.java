@@ -4,27 +4,21 @@ import com.galdovich.day1.entity.Point;
 import com.galdovich.day1.exception.NumberException;
 import com.galdovich.day1.validation.FunctionValidator;
 import com.galdovich.day1.validation.NumberValidator;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class ArithmeticService {
 
     private static final int [] PERFECT_ARRAY = {6,28,496,8128,33550336};
-
-    /** The Method finds the closest point to the coordinate start.*/
-    public Point countClosestPoint (Point point1, Point point2) throws NumberException{
-        if (!NumberValidator.checkRangePoints(point1) && !NumberValidator.checkRangePoints(point1)){
-                throw new NumberException("Number is out of the range");
-        }
-        double hypod1 = point1.countVector();
-        double hypod2 = point2.countVector();
-        if (hypod1 > hypod2){
-            return point2;
-        }else {
-            return point1;
-        }
-    }
+    private static final int FIRT_POINT_NEARER = 1;
+    private static final int SECOND_POINT_NEARER = 2;
+    private static final int EQUALS_POINTS = 0;
 
     /** Method that define the last digit square of given number */
-    public int countLastDigitSquare (double number){
+    public int countLastDigitSquare (double number) throws NumberException{
+        if (!NumberValidator.isPositive(number)){
+            throw new NumberException("Number is negative");
+        }
         int lastDigit = (int) number % 10;
         switch (lastDigit){
             case 1: case 9:
@@ -72,31 +66,52 @@ public class ArithmeticService {
         return false;
     }
 
+    /** Method returns 1 if point1 closer than point2,
+     * @return 1 if first point closer than second point
+     * @return 2 if second point closer than first point
+     * @return 0 if distance from origin to first point and second are equals */
+    public int defineClosestPoint (Point point1, Point point2) throws NumberException{
+        if (!NumberValidator.checkRangePoints(point1) || !NumberValidator.checkRangePoints(point2)){
+            throw new NumberException("Number is out of the range");
+        }
+        double point1Hypod = point1.countVector();
+        double point2Hypod = point2.countVector();
+        if (point1Hypod == point2Hypod) {
+            return EQUALS_POINTS;
+        } else if (point1Hypod > point2Hypod) {
+            return SECOND_POINT_NEARER;
+        }
+        return FIRT_POINT_NEARER;
+    }
+
     public double countFunction(double value) {
         if (value >= 3) {
-            return -Math.pow(value, 2) + 3 * value + 9;
+            return Math.pow(value, 2) + 3 * value + 9;
         }
         return 1/((Math.pow(value,3)) - 6);
     }
 
-    private double countTgFunctionValue(double x) {
-        return Math.tan(x);
-    }
+    public SortedMap <Double, Double> countTrigonometricFunction
+            (double firstPoint, double secondPoint, double functionStep) throws NumberException {
+        FunctionValidator functionValidator = new FunctionValidator();
 
+        if (!functionValidator.validateTrigFunct(firstPoint, secondPoint, functionStep)) {
+            throw new NumberException();
+        }
 
-    public double[][] countFunctionValues(double a,
-                                        double b, double h) throws NumberException{
-        if (!FunctionValidator.validateLineFunction(a, b, h)){
-            throw new NumberException("Incorrect values. First number should be more than second number");
+        double functionArg = firstPoint;
+        SortedMap<Double, Double> functionResult = new TreeMap<>();
+
+        while (functionArg <= secondPoint) {
+            double tan = Math.tan(functionArg);
+            double scale = Math.pow(10, 3);
+
+            tan = Math.ceil(tan * scale) / scale;
+            functionResult.put(functionArg, tan);
+            functionArg += functionStep;
         }
-        int size = (int) ((b - a) / h) + 1;
-        double[][] msXAndValues = new double[2][size];
-        int count = 0;
-        for (double i = a; i < b; i += h) {
-            msXAndValues[0][count] = i;
-            msXAndValues[1][count++] = countTgFunctionValue(i);
-        }
-        return msXAndValues;
+
+        return functionResult;
     }
 
 }

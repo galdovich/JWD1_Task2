@@ -3,8 +3,8 @@ package com.galdovich.day1.entity;
 public class Point {
 
     private String name;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
     public Point() {
         this.x = 0;
@@ -12,17 +12,17 @@ public class Point {
         this.name = "Default point";
     }
 
-    public Point(String name, int x, int y) {
+    public Point(String name, double x, double y) {
         this.x = x;
         this.y = y;
         this.name = name;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -51,15 +51,23 @@ public class Point {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + x;
-        result = prime * result + y;
+        int result;
+        long temp;
+        result = name != null ? name.hashCode() : 0;
+        temp = Double.doubleToLongBits(x);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
     @Override
     public String toString() {
-        return String.format("Point - %s, coordinate X = %d, coordinate Y = %d", name, x, y);
+        final StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append("( x = ").append(x);
+        sb.append(", y = ").append(y);
+        sb.append(')');
+        return sb.toString();
     }
 }
